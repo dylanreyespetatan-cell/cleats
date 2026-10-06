@@ -1,0 +1,49 @@
+/* GENERAL PAGE */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f1f5f9;
+    color: #172033;
+}
+
+/* HEADER */
+
+header {
+    background: linear-gradient(135deg, #071c3a, #0b5cff);
+    color: white;
+    text-align: center;
+    padding: 55px 20px;
+}
+
+header h1 {
+    font-size: 45px;
+    margin-bottom: 12px;
+}
+
+header p {
+    font-size: 19px;
+}
+
+/* NAVIGATION */
+
+nav {
+    background: white;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    color: #0b5cff;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 20px;
+}
+
+nav
