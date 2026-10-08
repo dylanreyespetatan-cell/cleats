@@ -1,244 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Top 20 Soccer Cleats</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f2;
+            color: #222;
+        }
+
+        header {
+            background: #063d26;
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        nav {
+            background: #092f21;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+        }
+
+        .controls {
+            text-align: center;
+            padding: 25px 10px;
+        }
+
+        input, select {
+            padding: 12px;
+            margin: 5px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        #products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .cleat {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px #00000015;
+            transition: 0.2s;
+        }
+
+        .cleat:hover {
+            transform: translateY(-5px);
+        }
+
+        .cleat img {
+            width: 100%;
+            height: 170px;
+            object-fit: contain;
+            background: #f7f9f7;
+            border-radius: 8px;
+        }
+
+        .cleat h3 {
+            font-size: 16px;
+            min-height: 40px;
+        }
+
+        .brand {
+            color: #666;
+        }
+
+        .price {
+            color: #087a40;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .cleat a {
+            display: inline-block;
+            background: #087a40;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .cleat a:hover {
+            background: #063d26;
+        }
+
+        #about {
+            text-align: center;
+            padding: 30px;
+        }
+
+        footer {
+            background: #063d26;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 900px) {
+            #products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            #products {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1>⚽ Top 20 Soccer Cleats</h1>
-        <p>Find the best cleats for your game</p>
-    </header>
+<header>
+    <h1>⚽ Top 20 Soccer Cleats</h1>
+    <p>Find the right cleats for your game!</p>
+</header>
 
+<nav>
+    <a href="#products">Cleats</a>
+    <a href="#about">About</a>
+</nav>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="#cleats">Cleats</a>
-        <a href="#about">About</a>
-    </nav>
+<div class="controls">
+    <input
+        type="text"
+        id="search"
+        placeholder="Search soccer cleats..."
+        aria-label="Search cleats"
+    >
 
+    <select id="brand" aria-label="Filter by brand">
+        <option value="All">All Brands</option>
+        <option value="Nike">Nike</option>
+        <option value="adidas">adidas</option>
+        <option value="PUMA">PUMA</option>
+        <option value="New Balance">New Balance</option>
+    </select>
+</div>
 
-    <!-- Main Content -->
-    <main>
+<h2 style="text-align:center;">Our Top 20 Cleats</h2>
 
-        <h2 id="cleats">Top 20 Cleats</h2>
+<div id="products"></div>
 
-        <div class="cleat-container">
+<section id="about">
+    <h2>About This Website</h2>
+    <p>Explore 20 popular soccer cleats from four major brands.</p>
+    <p>Prices are examples and may change by store and model.</p>
+</section>
 
+<footer>
+    <p>⚽ Soccer Cleats © 2026</p>
+</footer>
 
-            <!-- 1 -->
+<script>
+const cleats = [
+    ["Nike Mercurial Superfly Elite", "Nike", 295],
+    ["Nike Mercurial Vapor Elite", "Nike", 260],
+    ["Nike Phantom Elite", "Nike", 260],
+    ["Nike Tiempo Elite", "Nike", 250],
+    ["adidas Predator Elite", "adidas", 280],
+    ["adidas F50 Elite", "adidas", 270],
+    ["adidas Copa Pure Elite", "adidas", 250],
+    ["adidas Predator Pro", "adidas", 170],
+    ["PUMA Future Ultimate", "PUMA", 245],
+    ["PUMA Future Pro", "PUMA", 145],
+    ["PUMA Future Match", "PUMA", 95],
+    ["PUMA Ultra Ultimate", "PUMA", 240],
+    ["New Balance Furon Elite", "New Balance", 225],
+    ["New Balance Furon Pro", "New Balance", 150],
+    ["New Balance Furon Team", "New Balance", 95],
+    ["Nike Mercurial Vapor Pro", "Nike", 160],
+    ["Nike Mercurial Superfly Pro", "Nike", 170],
+    ["Nike Mercurial Vapor Academy", "Nike", 95],
+    ["Nike Mercurial Vapor Club", "Nike", 70],
+    ["adidas Predator League", "adidas", 100]
+];
+
+const products = document.getElementById("products");
+const search = document.getElementById("search");
+const brand = document.getElementById("brand");
+
+function showCleats() {
+    products.innerHTML = "";
+
+    const filtered = cleats.filter(c => {
+        return c[0].toLowerCase().includes(search.value.toLowerCase())
+            && (brand.value === "All" || c[1] === brand.value);
+    });
+
+    if (filtered.length === 0) {
+        products.innerHTML = "<p>No cleats found. Try another search.</p>";
+        return;
+    }
+
+    filtered.forEach((c) => {
+        const name = c[0];
+        const maker = c[1];
+        const price = c[2];
+
+        // Visible placeholder image until you add a real cleat photo.
+        const picture =
+            "https://placehold.co/500x300/eaf3ee/063d26?text="
+            + encodeURIComponent(name);
+
+        products.innerHTML += `
             <div class="cleat">
-                <img src="images/superfly.jpg" alt="Nike Mercurial Superfly">
-                <h3>#1 Nike Mercurial Superfly 11 Elite</h3>
-                <p>Nike</p>
-                <h4>$295</h4>
+                <img
+                    src="${picture}"
+                    alt="${name}"
+                    loading="lazy"
+                >
+                <h3>${name}</h3>
+                <p class="brand">${maker}</p>
+                <p class="price">$${price}</p>
+                <a href="https://www.google.com/search?q=${encodeURIComponent(name)}"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Find Cleats
+                </a>
             </div>
+        `;
+    });
+}
 
+search.addEventListener("input", showCleats);
+brand.addEventListener("change", showCleats);
 
-            <!-- 2 -->
-            <div class="cleat">
-                <img src="images/vapor.jpg" alt="Nike Mercurial Vapor">
-                <h3>#2 Nike Mercurial Vapor 17 Elite</h3>
-                <p>Nike</p>
-                <h4>$260</h4>
-            </div>
-
-
-            <!-- 3 -->
-            <div class="cleat">
-                <img src="images/phantom.jpg" alt="Nike Phantom">
-                <h3>#3 Nike Phantom 6 Low Elite</h3>
-                <p>Nike</p>
-                <h4>$260</h4>
-            </div>
-
-
-            <!-- 4 -->
-            <div class="cleat">
-                <img src="images/tiempo.jpg" alt="Nike Tiempo">
-                <h3>#4 Nike Tiempo Maestro Elite</h3>
-                <p>Nike</p>
-                <h4>$250</h4>
-            </div>
-
-
-            <!-- 5 -->
-            <div class="cleat">
-                <img src="images/predator.jpg" alt="Adidas Predator">
-                <h3>#5 adidas Predator Elite</h3>
-                <p>adidas</p>
-                <h4>$280</h4>
-            </div>
-
-
-            <!-- 6 -->
-            <div class="cleat">
-                <img src="images/f50.jpg" alt="Adidas F50">
-                <h3>#6 adidas F50 Hyperfast Elite</h3>
-                <p>adidas</p>
-                <h4>$270</h4>
-            </div>
-
-
-            <!-- 7 -->
-            <div class="cleat">
-                <img src="images/copa.jpg" alt="Adidas Copa">
-                <h3>#7 adidas Copa Pure IV Elite</h3>
-                <p>adidas</p>
-                <h4>$250</h4>
-            </div>
-
-
-            <!-- 8 -->
-            <div class="cleat">
-                <img src="images/predator.jpg" alt="Adidas Predator Pro">
-                <h3>#8 adidas Predator Pro</h3>
-                <p>adidas</p>
-                <h4>$170</h4>
-            </div>
-
-
-            <!-- 9 -->
-            <div class="cleat">
-                <img src="images/future.jpg" alt="Puma Future">
-                <h3>#9 PUMA Future 9 Ultimate</h3>
-                <p>PUMA</p>
-                <h4>$245</h4>
-            </div>
-
-
-            <!-- 10 -->
-            <div class="cleat">
-                <img src="images/future.jpg" alt="Puma Future Pro">
-                <h3>#10 PUMA Future 9 Pro</h3>
-                <p>PUMA</p>
-                <h4>$145</h4>
-            </div>
-
-
-            <!-- 11 -->
-            <div class="cleat">
-                <img src="images/future.jpg" alt="Puma Future Match">
-                <h3>#11 PUMA Future 9 Match</h3>
-                <p>PUMA</p>
-                <h4>$95</h4>
-            </div>
-
-
-            <!-- 12 -->
-            <div class="cleat">
-                <img src="images/ultra.jpg" alt="Puma Ultra">
-                <h3>#12 PUMA Ultra 6 Ultimate</h3>
-                <p>PUMA</p>
-                <h4>$240</h4>
-            </div>
-
-
-            <!-- 13 -->
-            <div class="cleat">
-                <img src="images/furon.jpg" alt="New Balance Furon">
-                <h3>#13 New Balance Furon Elite</h3>
-                <p>New Balance</p>
-                <h4>$225</h4>
-            </div>
-
-
-            <!-- 14 -->
-            <div class="cleat">
-                <img src="images/furon.jpg" alt="New Balance Furon Pro">
-                <h3>#14 New Balance Furon Pro</h3>
-                <p>New Balance</p>
-                <h4>$150</h4>
-            </div>
-
-
-            <!-- 15 -->
-            <div class="cleat">
-                <img src="images/furon.jpg" alt="New Balance Furon Team">
-                <h3>#15 New Balance Furon Team</h3>
-                <p>New Balance</p>
-                <h4>$95</h4>
-            </div>
-
-
-            <!-- 16 -->
-            <div class="cleat">
-                <img src="images/vapor.jpg" alt="Nike Vapor Pro">
-                <h3>#16 Nike Mercurial Vapor 17 Pro</h3>
-                <p>Nike</p>
-                <h4>$160</h4>
-            </div>
-
-
-            <!-- 17 -->
-            <div class="cleat">
-                <img src="images/superfly.jpg" alt="Nike Superfly Pro">
-                <h3>#17 Nike Mercurial Superfly 11 Pro</h3>
-                <p>Nike</p>
-                <h4>$170</h4>
-            </div>
-
-
-            <!-- 18 -->
-            <div class="cleat">
-                <img src="images/vapor.jpg" alt="Nike Vapor Academy">
-                <h3>#18 Nike Mercurial Vapor 17 Academy</h3>
-                <p>Nike</p>
-                <h4>$95</h4>
-            </div>
-
-
-            <!-- 19 -->
-            <div class="cleat">
-                <img src="images/vapor.jpg" alt="Nike Vapor Club">
-                <h3>#19 Nike Mercurial Vapor 17 Club</h3>
-                <p>Nike</p>
-                <h4>$70</h4>
-            </div>
-
-
-            <!-- 20 -->
-            <div class="cleat">
-                <img src="images/predator.jpg" alt="Adidas Predator League">
-                <h3>#20 adidas Predator League</h3>
-                <p>adidas</p>
-                <h4>$100</h4>
-            </div>
-
-        </div>
-
-
-        <!-- About -->
-        <section id="about">
-
-            <h2>About</h2>
-
-            <p>
-                This website shows 20 popular soccer cleats
-                from Nike, adidas, PUMA, and New Balance.
-            </p>
-
-            <p>
-                Prices can change depending on the store.
-            </p>
-
-        </section>
-
-    </main>
-
-
-    <!-- Footer -->
-    <footer>
-        <p>⚽ Soccer Cleats © 2026</p>
-    </footer>
+showCleats();
+</script>
 
 </body>
 </html>
