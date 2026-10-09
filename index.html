@@ -6,6 +6,114 @@
     <title>Top 20 Soccer Cleats</title>
 
     <style>
+        /* Smooth scrolling */
+html {
+scroll-behavior: smooth;
+}
+
+/* Header animation */
+header {
+animation: slideDown 0.8s ease-out;
+}
+
+/* Animate the title */
+header h1 {
+animation: fadeIn 1.2s ease-out;
+}
+
+/* Navigation hover effect */
+nav a {
+display: inline-block;
+transition: color 0.3s, transform 0.3s;
+}
+
+nav a {
+color: #70ff9b;
+transform: scale(1.15);
+}
+
+/* Product card animation */
+.cleat {
+animation: fadeUp 0.7s ease both;
+transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cleat {
+transform: translateY(-10px) scale(1.03);
+box-shadow: 0 12px 25px #087a4050;
+}
+
+/* Make cleat pictures zoom on hover */
+.cleat img {
+transition: transform 0.4s ease;
+}
+
+.cleat img {
+transform: scale(1.08);
+}
+
+/* Animate the buttons */
+.cleat a {
+transition: background 0.3s, transform 0.3s;
+}
+
+.cleat a {
+background: #063d26;
+transform: scale(1.07);
+}
+
+/* Search box focus effect */
+input, select {
+transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+input, select {
+outline: none;
+border-color: #087a40;
+box-shadow: 0 0 8px #087a4070;
+}
+
+/* Animation styles */
+@keyframes slideDown {
+from {
+opacity: 0;
+transform: translateY(-30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@keyframes fadeIn {
+from {
+opacity: 0;
+}
+to {
+opacity: 1;
+}
+}
+
+@keyframes fadeUp {
+from {
+opacity: 0;
+transform: translateY(25px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+/* Respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+*, *::before, *::after {
+animation-duration: 0.01ms !important;
+animation-iteration-count: 1 !important;
+scroll-behavior: auto !important;
+transition-duration: 0.01ms !important;
+}
+}
         * {
             box-sizing: border-box;
         }
